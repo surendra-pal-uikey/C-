@@ -1,4 +1,4 @@
 # depslib dependency file v1.0
-1599399156 source:f:\work\cpp\debugsession\main.cpp
-	<iostream>
+1599536419 source:f:\work\cpp\debugsession\main.cpp
+	<bits/stdc++.h>
 
