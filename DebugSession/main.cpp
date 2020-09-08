@@ -169,40 +169,39 @@ void reverseStack( stack<int> &st ){
 
     return;
 }
+int generateAndFind(string str, int r, int N, int K){
+
+    if( r == N && str.length() <= K ){
+        return str[K-1]-'0';
+    }
+
+    string result = "";
+    for(int i = 0; i < str.length(); i++){
+        if( str[i] == '0'){
+            result += "01";
+        } else {
+            result += "10";
+        }
+    }
+    return generateAndFind(result, r+1, N, K);
+}
+
+int kthGrammar(int N, int K) {
+    string str = "0";
+    int r = 1;
+    return generateAndFind(str, r, N, K);
+}
+
 int main()
 {
 
     freopen("input.txt", "r", stdin);
     freopen("output.txt", "w", stdout);
 
-    int n;
-    cin >> n;
+    int N, K;
 
-    stack<int> st;
+    cin >> N >> K;
 
-    for(int i = 0; i < n; i++){
-
-        int num;
-        cin >> num;
-
-        st.push( num );
-    }
-
-    stack<int> st1 = st;
-
-    while( !st1.empty() ){
-        cout << st1.top() << " ";
-        st1.pop();
-    }
-    cout << endl;
-
-
-    reverseStack( st );
-
-    while( !st.empty() ){
-        cout << st.top() << " ";
-        st.pop();
-    }
-    cout << endl;
+    cout << kthGrammar(N, K) << endl;
     return 0;
 }
