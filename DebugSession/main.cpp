@@ -140,6 +140,35 @@ void deleteStackMiddleElement( stack<int> &st, int middleIndex  ){
 
     st.push( temp );
 }
+
+//reverse a stack using recursion
+void pushAtBottomOfTheStack( stack<int> &st, int value ){
+    if( st.size() == 0 ){
+        st.push( value );
+        return;
+    }
+
+    int temp = st.top();
+    st.pop();
+
+    pushAtBottomOfTheStack( st, value);
+
+    st.push( temp );
+    return;
+}
+void reverseStack( stack<int> &st ){
+    if( st.size() == 1 ){
+        return;
+    }
+
+    int temp = st.top();
+    st.pop();
+
+    reverseStack( st );
+    pushAtBottomOfTheStack( st, temp );
+
+    return;
+}
 int main()
 {
 
@@ -159,7 +188,16 @@ int main()
         st.push( num );
     }
 
-    deleteStackMiddleElement( st, (st.size()/2)+1 );
+    stack<int> st1 = st;
+
+    while( !st1.empty() ){
+        cout << st1.top() << " ";
+        st1.pop();
+    }
+    cout << endl;
+
+
+    reverseStack( st );
 
     while( !st.empty() ){
         cout << st.top() << " ";
